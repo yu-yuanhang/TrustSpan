@@ -1,0 +1,34 @@
+#ifndef TRUSTSPAN_MEM_TEST_UAPI_H
+#define TRUSTSPAN_MEM_TEST_UAPI_H
+
+#include <stdint.h>
+#include <sys/ioctl.h>
+
+struct trustspan_mem_info {
+	uint64_t phys_addr;
+	uint64_t size;
+	uint32_t allocated;
+	uint32_t state;
+};
+
+enum trustspan_mem_state {
+	TRUSTSPAN_MEM_STATE_IDLE = 0,
+	TRUSTSPAN_MEM_STATE_ALLOCATED = 1,
+	TRUSTSPAN_MEM_STATE_MAPPED = 2,
+	TRUSTSPAN_MEM_STATE_PREPARED = 3,
+	TRUSTSPAN_MEM_STATE_PROTECTED = 4,
+};
+
+#define TRUSTSPAN_MEM_TEST_IOC_MAGIC 'T'
+#define TRUSTSPAN_MEM_TEST_IOC_ALLOC \
+	_IOWR(TRUSTSPAN_MEM_TEST_IOC_MAGIC, 0x01, struct trustspan_mem_info)
+#define TRUSTSPAN_MEM_TEST_IOC_QUERY \
+	_IOR(TRUSTSPAN_MEM_TEST_IOC_MAGIC, 0x02, struct trustspan_mem_info)
+#define TRUSTSPAN_MEM_TEST_IOC_FREE \
+	_IO(TRUSTSPAN_MEM_TEST_IOC_MAGIC, 0x03)
+#define TRUSTSPAN_MEM_TEST_IOC_PREPARE_SECURE \
+	_IO(TRUSTSPAN_MEM_TEST_IOC_MAGIC, 0x04)
+#define TRUSTSPAN_MEM_TEST_IOC_MARK_PROTECTED \
+	_IO(TRUSTSPAN_MEM_TEST_IOC_MAGIC, 0x05)
+
+#endif /* TRUSTSPAN_MEM_TEST_UAPI_H */

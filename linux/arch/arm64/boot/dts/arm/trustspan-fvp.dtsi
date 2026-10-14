@@ -1,0 +1,18 @@
+// SPDX-License-Identifier: GPL-2.0
+/* ConfInfer system modification: SYS-001 (TrustSpan dedicated CMA pool). */
+
+/ {
+	trustspan_memory {
+		compatible = "trustspan,secure-cma";
+		memory-region = <&trustspan_cma>;
+	};
+};
+
+&{/reserved-memory} {
+	trustspan_cma: dma-pool@e0000000 {
+		compatible = "shared-dma-pool";
+		reusable;
+		reg = <0x0 0xe0000000 0x0 0x08000000>;
+		alignment = <0x0 0x00200000>;
+	};
+};

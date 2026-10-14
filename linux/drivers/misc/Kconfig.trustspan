@@ -1,0 +1,10 @@
+# ConfInfer system modification: SYS-001 (TrustSpan CMA driver configuration).
+config TRUSTSPAN_MEM_TEST
+	tristate "TrustSpan memory test driver"
+	default y
+	depends on MMU && DMA_CMA
+	help
+	  TrustSpan contiguous-memory driver. It uses the coherent DMA API backed
+	  by CMA so allocations larger than the buddy allocator's MAX_ORDER limit
+	  remain physically contiguous. It exposes the physical address to
+	  userspace and releases the allocation after secure ownership returns.

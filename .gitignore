@@ -1,0 +1,26 @@
+# Local build products
+*.a
+*.o
+*.so
+*.elf
+*.ta
+*.cmd
+*.d
+*.map
+
+# Generated output directories
+build/
+out/
+
+# Machine-specific synchronization records
+scripts/.trustspan_sync_*_manifest
+
+# Third-party reference material is not redistributed by this repository
+arm_corelink_tzc400_trustzone_address_space_controller_trm_100325_0001_02_en.pdf
+
+# Editor and operating-system files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store

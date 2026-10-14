@@ -1,0 +1,2 @@
+# ConfInfer system modification: SYS-001 (TrustSpan CMA driver build entry).
+obj-$(CONFIG_TRUSTSPAN_MEM_TEST) += trustspan/
